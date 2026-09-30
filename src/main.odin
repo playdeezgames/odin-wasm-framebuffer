@@ -29,8 +29,3 @@ update :: proc() {
     buffer_present()
 }
 
-
-main :: proc() {
-    buffer_init()
-    update()
-}
