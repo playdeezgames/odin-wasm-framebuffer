@@ -17,7 +17,7 @@
             const input_buffer = []
             document.body.addEventListener('keydown', (e) => {
                 input_buffer.push(e.key);
-                if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.key)) {
+                if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' ', 'Tab', 'Enter', 'Escape'].includes(e.key)) {
                     e.preventDefault();
                 }
             });

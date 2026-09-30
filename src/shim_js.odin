@@ -6,7 +6,23 @@ step :: proc(dt: f32) -> bool {
     if js_can_read() {
         buf: [256]byte
         command := read_input(buf[:])
-        input_handle(command)
+        if command == "ArrowUp" {
+            input_handle(UP_COMMAND)
+        } else if command == "ArrowDown" {
+            input_handle(DOWN_COMMAND)
+        } else if command == "ArrowLeft" {
+            input_handle(LEFT_COMMAND)
+        } else if command == "ArrowRight" {
+            input_handle(RIGHT_COMMAND)
+        } else if command == " " {
+            input_handle(GREEN_COMMAND)
+        } else if command == "Tab" {
+            input_handle(RED_COMMAND)
+        } else if command == "Enter" {
+            input_handle(BLUE_COMMAND)
+        } else if command == "Escape" {
+            input_handle(YELLOW_COMMAND)
+        }
     }
     return true
 }
