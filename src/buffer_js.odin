@@ -36,9 +36,3 @@ buffer_present :: proc()
 {
     js_frame(buffer, SCREEN_WIDTH, SCREEN_HEIGHT)
 }
-
-
-main :: proc() {
-    buffer_init()
-    update()
-}
