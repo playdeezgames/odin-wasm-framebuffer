@@ -1,12 +1,32 @@
 package metaphor
 
-player_x:= 100
-player_y:= 100
+patterns: [][]string = {
+    {
+        "#......#",
+        ".#....#",
+        "..#..#",
+        "...##",
+        "...##",
+        "..#..#",
+        ".#....#",
+        "#......#"
+    },
+    {
+        "########",
+        "#......#",
+        "#......#",
+        "#......#",
+        "#......#",
+        "#......#",
+        "#......#",
+        "########",
+    },
+}
 
 update :: proc() {
-    buffer_fill_rect(player_x,player_y,10,10,255,255,255,255)
-    js_frame(buffer, WIDTH, HEIGHT)
-    buffer_fill_rect(player_x,player_y,10,10,0,0,0,255)
+    buffer_draw_pattern(100,100,&patterns[0],255,255,255,255)
+    buffer_draw_pattern(150,150,&patterns[1],255,0,255,255)
+    buffer_present()
 }
 
 

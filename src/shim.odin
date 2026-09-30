@@ -1,17 +1,11 @@
 package metaphor
 
-import "core:fmt"
-
 @(export)
 step :: proc(dt: f32) -> bool {
     if js_can_read() {
         buf: [256]byte
         command := read_input(buf[:])
-        fmt.println(command)
-        if command == "ArrowUp" {
-            player_y -= 10
-            update()
-        }
+        input_handle(command)
     }
     return true
 }
