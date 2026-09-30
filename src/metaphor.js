@@ -1,0 +1,28 @@
+const canvas = document.getElementById("canvas");
+ctx = canvas.getContext("2d");
+const BPP = 4;
+const mem = new odin.WasmMemoryInterface();
+const input_buffer = []
+document.body.addEventListener('keydown', (e) => {
+    input_buffer.push(e.key);
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' ', 'Tab', 'Enter', 'Escape'].includes(e.key)) {
+        e.preventDefault();
+    }
+});
+odin.runWasm("metaphor.wasm", null, {
+    "shim": {
+        js_can_read: () => input_buffer.length > 0,
+        js_read: (ptr_command, cap_command) => {
+            const text = input_buffer.shift()
+            const bytes = new TextEncoder().encode(text);
+            const n = Math.min(bytes.length, cap_command);
+            new Uint8Array(mem.memory.buffer, ptr_command, n).set(bytes.subarray(0, n));
+            return n;            
+        },
+        js_frame: (ptr, width, height) => {
+            const pixels = new Uint8ClampedArray(mem.memory.buffer, ptr, width * height * BPP);
+            const imageData = new ImageData(pixels.slice(), width, height);
+            ctx.putImageData(imageData, 0, 0);                    
+        }
+    }
+}, mem);

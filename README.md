@@ -6,5 +6,9 @@ python3 -m http.server 8000
 ```
 
 left undone:
-- [ ] sfx - on the js side, shim to play by id?
-- [ ] gamepad - get_gamepad_state?
+- [ ] sfx
+  - [ ] wasm
+  - [ ] native
+- [ ] keyboard config
+  - [ ] wasm
+  - [ ] native
